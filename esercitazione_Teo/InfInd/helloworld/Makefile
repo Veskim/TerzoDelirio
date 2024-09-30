@@ -1,5 +1,5 @@
 #variabili dichiarate
-EXENAME = 02-main
+EXENAME = 02-main.o
 CSRCS = 02-main.cpp 02-stampa-lib/02-stampa.cpp
 CFLAGS = -Wall
 LDFLAGS = -l stdc++

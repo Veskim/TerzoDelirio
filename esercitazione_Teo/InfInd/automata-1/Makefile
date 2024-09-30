@@ -1,5 +1,5 @@
 #variabili dichiarate
-EXENAME = 01-automata
+EXENAME = 01-automata.o
 CSRCS = automata-1-solution.cpp 
 CFLAGS = -Wall
 LDFLAGS = -l stdc++
