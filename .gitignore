@@ -1,0 +1,2 @@
+#ignora oggetti C
+*/*/*.o
