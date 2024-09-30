@@ -1,5 +1,5 @@
 #variabili dichiarate
-EXENAME = 02-machine
+EXENAME = 02-machine.o
 CSRCS = machine-2.cpp 
 CFLAGS = -Wall
 LDFLAGS = -l stdc++
