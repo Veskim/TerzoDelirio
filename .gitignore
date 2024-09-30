@@ -1,2 +1,5 @@
+# Prerequisites
+*.d
+
 #ignora oggetti C
-*/*/*.o
+*.o
