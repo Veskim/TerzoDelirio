@@ -3,6 +3,7 @@ EXENAME = 02-machine.o
 CSRCS = machine-2.cpp 
 CFLAGS = -Wall
 LDFLAGS = -l stdc++
+BASEDIR = /TerzoDelirio
 
 #di solito viene già utilizzato
 CC = gcc

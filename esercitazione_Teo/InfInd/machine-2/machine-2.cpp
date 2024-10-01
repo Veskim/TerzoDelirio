@@ -1,8 +1,9 @@
+// Matteo Girelli, ingegneria informatica, mantova
 #include <iostream>
 
 using namespace std;
 
-const char inputs[] = {'a', 'a', 'b', 'b', 'c'};
+const char inputs[] = {'a', 'a', 'a', 'b', 'b', 'c'};
 int ninputs = sizeof(inputs) / sizeof(inputs[0]);
 
 /*
@@ -119,8 +120,6 @@ int sfn(int currState, char input)
 	return -1;
 }
 
-
-
 bool isFinalState(int s)
 {
 	return s == 3;
@@ -150,7 +149,6 @@ int main()
 
 		mfn(currState, c);
 		state = sfn(currState, c);
-        
 		
 		// Check for errors
 		if(state < 0)
