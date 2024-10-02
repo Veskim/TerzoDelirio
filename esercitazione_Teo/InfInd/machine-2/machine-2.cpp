@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const char inputs[] = {'a', 'a', 'a', 'b', 'b', 'c'};
+const char inputs[] = {'a', 'a', 'a', 'a', 'b', 'b', 'c'};
 int ninputs = sizeof(inputs) / sizeof(inputs[0]);
 
 /*
