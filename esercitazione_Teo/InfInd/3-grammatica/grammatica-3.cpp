@@ -16,8 +16,8 @@ enum Stati {
 };
 
 // Input della frase (sequenza di parole che vogliamo riconoscere)
-const string inputs[] = {"il", "gatto", "mangia", "il", "topo"}; // stringa giusta
-//const string inputs[] = {"il", "gatto", "mangia", "il", "topo", "sasso"}; // stringa giusta
+//const string inputs[] = {"il", "gatto", "mangia", "il", "topo"}; // stringa giusta
+const string inputs[] = {"il", "gatto", "mangia", "il", "topo", "sasso"}; // stringa giusta
 //const string inputs[] = {"il", "gatto", "mangia", "il", "topo", "mangia", "il", "sasso"}; // stringa lunga
 //const string inputs[] = { "gatto", "mangia", "il", "topo"}; // stringa sbagliata
 int ninputs = sizeof(inputs) / sizeof(inputs[0]);
@@ -42,9 +42,8 @@ int stateTable[7][6] = { // Nota: le righe devono corrispondere al numero di sta
     { ERRORE, ERRORE, ERRORE, ERRORE, VERBO, VERBO }, // NOME_SOGGETTO
     { ARTICOLO_OGGETTO, ERRORE, ERRORE, ERRORE, ERRORE, ERRORE }, // VERBO
     { ERRORE, NOME_OGGETTO, NOME_OGGETTO, NOME_OGGETTO, ERRORE, ERRORE }, // ARTICOLO_OGGETTO
-	{ ERRORE, ERRORE, ERRORE, ERRORE, ERRORE, ERRORE }, // NOME_OGGETTO
 	{ FINALE, FINALE, FINALE, FINALE, FINALE, FINALE }, // Stato finale (accetta qualsiasi input, quindi finale)
-	
+	{ ERRORE, ERRORE, ERRORE, ERRORE, ERRORE, ERRORE }, // NOME_OGGETTO
 };
 
 /*
@@ -76,8 +75,8 @@ int nextState(int currState, const string &input) {
  * Verifica se lo stato corrente è lo stato finale
  */
 bool isFinalState(int s) {
-    //return s == ninputs; // se lo stato è grande quanto la mia stringa sono alla fine
-	return s == FINALE; // ERROR: mi conta il valore di errore per uscire
+    return s == ninputs; // se lo stato è grande quanto la mia stringa sono alla fine
+	//return s == FINALE; // ERROR: mi conta il valore di errore per uscire
 }
 
 int main() {
