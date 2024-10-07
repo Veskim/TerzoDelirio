@@ -25,7 +25,11 @@ clean:
 	rm -f *.o ${EXENAME2}
 	rm -f *.o ${EXENAME3}
 
-run: 
-	./${EXENAME} 
+run1: 
+	./${EXENAME}
+
+run2: 
 	./${EXENAME2} 
+
+run3:
 	./${EXENAME3} 
