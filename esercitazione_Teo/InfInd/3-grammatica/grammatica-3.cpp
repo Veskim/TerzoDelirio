@@ -1,3 +1,4 @@
+// Matteo Girelli ft. chat gpt, ingegneria informatica, mantova
 #include <iostream>
 #include <string>
 #include <map>
@@ -17,7 +18,7 @@ enum Stati {
 
 // Input della frase (sequenza di parole che vogliamo riconoscere)
 //const string inputs[] = {"il", "gatto", "mangia", "il", "topo"}; // stringa giusta
-const string inputs[] = {"il", "gatto", "mangia", "il", "topo", "sasso"}; // stringa giusta
+const string inputs[] = {"il", "sasso", "mangia", "il", "topo", "gatto"}; // stringa giusta
 //const string inputs[] = {"il", "gatto", "mangia", "il", "topo", "mangia", "il", "sasso"}; // stringa lunga
 //const string inputs[] = { "gatto", "mangia", "il", "topo"}; // stringa sbagliata
 int ninputs = sizeof(inputs) / sizeof(inputs[0]);
