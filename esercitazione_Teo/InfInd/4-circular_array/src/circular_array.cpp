@@ -29,6 +29,7 @@ void push_element(char x) {
     buffer[tail] = x;
     tail = (tail + 1) % MAX_SIZE; // Cicla l'indice della coda
     currentSize++;
+    std::cout << "Il buffer e' stato aggiornato con " << x << "\n";
 }
 
 // Funzione per rimuovere un elemento dal buffer circolare

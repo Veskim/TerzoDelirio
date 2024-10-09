@@ -24,18 +24,19 @@ static int isEmpty() {
 // Add element to buffer
 void push_element(char x) {
     if (isFull()) {
-        printf("Errore: Il buffer circolare è pieno\n");
+        printf("Error: BUFFER IS FULL\n");
         return;
     }
     buffer[tail] = x;
     tail = (tail + 1) % MAX_SIZE;
     currentSize++;
+    printf("Buffer updated\n");
 }
 
 // Take out element from buffer
 char pop_element() {
     if (isEmpty()) {
-        printf("Errore: Il buffer circolare è vuoto\n");
+        printf("Error: BUFFER IS EMPTY\n");
         return '\0'; // null in case of error
     }
     char value = buffer[head];
