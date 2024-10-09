@@ -1,27 +1,30 @@
-#variabili dichiarate
-EXENAME = 04-buffer.o
-CSRCS = .cpp 
-CFLAGS = -Wall
-LDFLAGS = -l stdc++
-BASEDIR = /TerzoDelirio
+# Compilatori
+CC = gcc        # Compilatore per C
+CXX = g++       # Compilatore per C++
 
-#di solito viene già utilizzato
-CC = gcc
+# Flags di compilazione
+CFLAGS = -Wall -g
+CXXFLAGS = -Wall -g
 
-#only mandatory target, called "all"
-# importante: ricordarsi di usare i tab e non gli spazi dopo ogni target
-all:
-	${CC} ${CSRCS} ${CFLAGS} -o ${EXENAME} ${LDFLAGS}
-	${CC} ${CSRCS2} ${CFLAGS} -o ${EXENAME2} ${LDFLAGS}
-	${CC} ${CSRCS3} ${CFLAGS} -o ${EXENAME3} ${LDFLAGS}
+# Target
+C_TARGET = c_array.o       # Eseguibile per il programma C
+CPP_TARGET = cpp_array.o   # Eseguibile per il programma C++
 
-#pulisco da file ed .exe
+# File sorgenti
+C_SOURCES = src/circular_array.c test/main.c
+CPP_SOURCES = src/circular_array.cpp test/main.cpp
+
+# Regole per creare entrambi i programmi
+all: $(C_TARGET) $(CPP_TARGET)
+
+# rule for C
+$(C_TARGET): $(C_SOURCES)
+	$(CC) $(CFLAGS) -o $(C_TARGET) $(C_SOURCES)
+
+# rule for C++
+$(CPP_TARGET): $(CPP_SOURCES)
+	$(CXX) $(CXXFLAGS) -o $(CPP_TARGET) $(CPP_SOURCES)
+
+# clean
 clean:
-	rm -f *.o ${EXENAME} 
-	rm -f *.o ${EXENAME2}
-	rm -f *.o ${EXENAME3}
-
-run: 
-	./${EXENAME}
-
- 
+	rm -f $(C_TARGET) $(CPP_TARGET)

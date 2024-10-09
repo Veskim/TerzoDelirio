@@ -26,8 +26,7 @@ char next()
  *   -3  : internal error
  */
 
-// fare due funzioni state (sfm) e output (mfn)
-
+// machine state
 int mfn(int currState, char input)
 {
     cout << "   Current state is: S" << currState << " |";
@@ -37,9 +36,9 @@ int mfn(int currState, char input)
 		case 0:
 			switch(input)
 			{
-				case 'a': printf("a/4\n"); break;
-				case 'b': printf("b/2\n"); break;
-				case 'c': printf("c/9\n"); break;
+				case 'a': cout << "a/4\n"; break;
+				case 'b': cout << "b/2\n"; break;
+				case 'c': cout << "c/9\n"; break;
 				default:  break;
 			}
 			break;
@@ -48,8 +47,8 @@ int mfn(int currState, char input)
 			switch(input)
 			{
 				case 'a': break;
-				case 'b': printf("b/1\n"); break;
-				case 'c': printf("c/6\n"); break;
+				case 'b': cout << "b/1\n"; break;
+				case 'c': cout << "c/6\n"; break;
 				default:  break;
 			}
 			break;
@@ -57,7 +56,7 @@ int mfn(int currState, char input)
 		case 2:
 			switch(input)
 			{
-				case 'a': printf("a/5\n"); break;
+				case 'a': cout <<"a/5\n"; break;
 				case 'b': break;
 				case 'c': break;
 				default: break;
@@ -75,6 +74,7 @@ int mfn(int currState, char input)
 	return -1;
 }
 
+// state machine output
 int sfn(int currState, char input)
 {
 	switch(currState)
