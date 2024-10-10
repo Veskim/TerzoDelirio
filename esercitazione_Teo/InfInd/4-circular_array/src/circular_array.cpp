@@ -23,19 +23,19 @@ bool isEmpty() {
 // Funzione per inserire un elemento nel buffer circolare
 void push_element(char x) {
     if (isFull()) {
-        std::cout << "Errore: Il buffer circolare è pieno\n";
+        std::cout << "Error: BUFFER IS FULL\n";
         return;
     }
     buffer[tail] = x;
     tail = (tail + 1) % MAX_SIZE; // Cicla l'indice della coda
     currentSize++;
-    std::cout << "Il buffer e' stato aggiornato con " << x << "\n";
+    std::cout << "Buffer updated with " << x << "\n";
 }
 
 // Funzione per rimuovere un elemento dal buffer circolare
 char pop_element() {
     if (isEmpty()) {
-        std::cout << "Errore: Il buffer circolare è vuoto\n";
+        std::cout << "Error: BUFFER IS FULL\n";
         return '\0'; // Restituisce il carattere nullo in caso di errore
     }
     char value = buffer[head];

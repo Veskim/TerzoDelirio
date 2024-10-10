@@ -30,7 +30,7 @@ void push_element(char x) {
     buffer[tail] = x;
     tail = (tail + 1) % MAX_SIZE;
     currentSize++;
-    printf("Buffer updated\n");
+    printf("Buffer updated with %c\n", x); 
 }
 
 // Take out element from buffer
