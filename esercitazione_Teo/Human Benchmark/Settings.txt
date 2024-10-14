@@ -1,0 +1,33 @@
+//////////////////////////////////////////////
+///////								   ///////
+///////	   Impostazioni GPIO Pulsanti  ///////
+///////								   ///////
+//////////////////////////////////////////////
+PC0 	- GPIO_EXTI0	- P1 -- Valore: 1
+PC1 	- GPIO_EXTI1	- P2 -- Valore: 2
+PC2	- GPIO_EXTI2	- P3 -- Valore: 4
+PC3	- GPIO_EXTI3	- P4 -- Valore: 8
+PC4	- GPIO_EXTI4	- P5 -- Valore: 16
+PC5	- GPIO_EXTI5	- P6 -- Valore: 32
+PA6	- GPIO_EXTI6	- P7 -- Valore: 64
+PA7	- GPIO_EXTI7	- P8 -- Valore: 128
+PB8	- GPIO_EXTI8	- P9 -- Valore: 256
+I PIN DEVONO ESSERE IMPOSTATI CON PULL-UP
+I nomi e mappature del Pin sono i seguenti:
+P-X-1
+- P: Pin
+- X: Gruppo -> GPIOA,...,E
+- 1: Numero del Pin
+
+LED Utilizzato per LED DATA IN: PA1
+
+FYI:
+PC13 Blue Button
+PE5 LED2
+
+
+TIMER USATI:
+TIM16 a 72MHz -> ARR 64515 - Prescaler: 2231 -- Durata Timer: 2 secondi
+TIM2 a 72MHZ -> impostazioni per WS2812B
+
+Costruiti 9x Filtro Passa-Basso per debouncing, utilizza una resistenza da 1kOhm ed un condensatore da 10nF.

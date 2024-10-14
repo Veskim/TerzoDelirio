@@ -44,6 +44,8 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
+uint8_t s[200] = {'\0'};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,6 +58,138 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+char next()
+{
+	static int i = 0;
+	if(i >= ninputs)
+		return 'x';
+	return inputs[i++];
+}
+
+/*
+ * Computes next state. Returns the following
+ *   >=0 : the next state
+ *   -1  : input sequence not legal
+ *   -2  : we're in final state
+ *   -3  : internal error
+ */
+
+// machine state
+int mfn(int currState, char input)
+{
+    sprintf((char*)s, "   Current state is: S" << currState << " |");
+    sprintf((char*)s, " Next input word is: ");
+	switch(currState)
+	{
+		case 0:
+			switch(input)
+			{
+				case 'a': sprintf((char*)s,"a/4\n"); 
+				HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+				memset(s ,0, sizeof(s));break;
+				case 'b': sprintf((char*)s, "b/2\n"); 
+				HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+				memset(s ,0, sizeof(s));break;
+				case 'c': sprintf((char*)s, "c/9\n"); 
+				HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+				memset(s ,0, sizeof(s));break;
+				default:  break;
+			}
+			break;
+			
+		case 1:
+			switch(input)
+			{
+				case 'a': break;
+				case 'b': sprintf((char*)s, "b/1\n"); 
+				HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+				memset(s ,0, sizeof(s));break;
+				case 'c': sprintf((char*)s, "c/6\n"); 
+				HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+				memset(s ,0, sizeof(s));break;
+				default:  break;
+			}
+			break;
+			
+		case 2:
+			switch(input)
+			{
+				case 'a': sprintf((char*)s,"a/5\n"); 
+				HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+				memset(s ,0, sizeof(s));break;
+				case 'b': break;
+				case 'c': break;
+				default: break;
+			}
+			break;
+			
+		case 3:
+			return -2;
+			
+		default:
+			return -3;
+	}
+	
+	// If we're here, it's an error
+	return -1;
+}
+
+// state machine output
+int sfn(int currState, char input)
+{
+	switch(currState)
+	{
+		case 0:
+			switch(input)
+			{
+				case 'a': return 2;
+				// imposta led
+				case 'b': return 1;
+				// imposta led
+				case 'c': return 3;
+				// imposta led
+				default:  break;
+			}
+			break;
+			
+		case 1:
+			switch(input)
+			{
+				case 'a': break;
+				case 'b': return 1;
+				// imposta led
+				case 'c': return 3;
+				// imposta led
+				default:  break;
+			}
+			break;
+			
+		case 2:
+			switch(input)
+			{
+				case 'a': return 0;
+				// imposta led
+				case 'b': break;
+				case 'c': break;
+				default: break;
+			}
+			break;
+			
+		case 3:
+			return -2;
+			
+		default:
+			return -3;
+	}
+	
+	// If we're here, it's an error
+	return -1;
+}
+
+bool isFinalState(int s)
+{
+	return s == 3;
+}
 
 /* USER CODE END 0 */
 
@@ -89,6 +223,56 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  sprintf((char*)s,"Inizializzazione e Caricamento dati...\r\n\r\n");
+  HAL_UART_Transmit(&huart1, s, sizeof(s), 100);
+  memset(s ,0, sizeof(s));
+  HAL_Delay(100);
+
+  cout << "Inputs size is " << ninputs << endl;
+	int currState = 0;
+    int state = -1;
+	char c;
+	
+	while(1)
+	{
+		// Get next input
+		c = next();
+		
+		// We ran out of inputs, and
+		if(c == 'x')
+		{
+			if(!isFinalState(currState))
+				goto error;
+			// This should never happen, if our algo works well
+			else
+				break;
+		}
+
+		mfn(currState, c);
+		state = sfn(currState, c);
+		
+		// Check for errors
+		if(state < 0)
+			goto error;
+
+		cout << "Moving to state S" << state << endl;
+		
+		if(isFinalState(state))
+			break;
+		
+		// Update curr state
+		currState = state;
+	}
+	
+	cout << "Input sequence is legal for our Language" << endl;
+	return 0;
+
+error:
+	cout << "ERROR!" << endl;
+	cout << "Input " << c << " not legal for state " << currState << endl;
+	cout << "Error code is " << state << endl;
+	return state;
 
   /* USER CODE END 2 */
 
@@ -200,11 +384,22 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, LRED_Pin|LYELLOW_Pin|LGREEN_Pin|LWHITE_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : LRED_Pin LYELLOW_Pin LGREEN_Pin LWHITE_Pin */
+  GPIO_InitStruct.Pin = LRED_Pin|LYELLOW_Pin|LGREEN_Pin|LWHITE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LED1_Pin */
   GPIO_InitStruct.Pin = LED1_Pin;

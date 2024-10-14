@@ -1,0 +1,9 @@
+INTRO PROGETTO
+pin disponibili PC0 (red), PC1 (yellow), PC2 (green), PC3 (white) abilitati come GPIO_output
+
+14/10 OTTOBRE
+- creare funzioni di USART
+- impostare i PIN relativi (esercitazione 6)
+- aggiungere un timer/sleep per cambiare il led 
+- implementare la macchina a stati funzionante
+- creare le funzioni relative
