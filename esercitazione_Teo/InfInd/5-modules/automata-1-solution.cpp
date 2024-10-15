@@ -1,4 +1,5 @@
 #include <iostream>
+#include "sfm.hpp"
 
 using namespace std;
 
@@ -24,78 +25,6 @@ char next()
  *   -2  : we're in final state
  *   -3  : internal error
  */
-int sfn(int currState, char input)
-{
-	switch(currState)
-	{
-		case 0:
-			switch(input)
-			{
-				case 'a': return 2;
-				case 'b': return 1;
-				case 'c': return 3;
-				default:  break;
-			}
-			break;
-			
-		case 1:
-			switch(input)
-			{
-				case 'a': break;
-				case 'b': return 1;
-				case 'c': return 3;
-				default:  break;
-			}
-			break;
-			
-		case 2:
-			switch(input)
-			{
-				case 'a': return 0;
-				case 'b': break;
-				case 'c': break;
-				default: break;
-			}
-			break;
-			
-		case 3:
-			return -2;
-			
-		default:
-			return -3;
-	}
-	
-	// If we're here, it's an error
-	return -1;
-}
-/*
- * Computes output. Moore machine.
- */
-void mfn(int currState)
-{
-	switch(currState)
-	{
-		case 0:
-			cout << "BLUE LED ON" << endl;
-			break;
-			
-		case 1:
-			cout << "YELLOW LED ON" << endl;
-			break;
-			
-		case 2:
-			cout << "YELLOW LED ON" << endl;
-			break;
-			
-		case 3:
-			cout << "BLUE LED ON" << endl;
-			break;
-			
-		default:
-			cout << "RED LED ON" << endl;
-			break;
-	}
-}
 
 bool isFinalState(int s)
 {
@@ -126,7 +55,7 @@ int main()
 		
 		cout << "Next input word is " << c << ", current state is " << currState << endl;
 		
-		state = sfn(currState, c);
+		state : sfn(currState, c);
 		
 		cout << "Next state will be " << state << endl;
 

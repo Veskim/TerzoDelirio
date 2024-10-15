@@ -45,6 +45,8 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 
 uint8_t s[200] = {'\0'};
+const char inputs[] = {'a', 'a', 'a', 'a', 'b', 'b', 'c'};
+int ninputs = sizeof(inputs) / sizeof(inputs[0]);
 
 /* USER CODE END PV */
 
@@ -157,7 +159,7 @@ int sfn(int currState, char input)
 			{
 				case 'a': break;
 				case 'b': return 1;
-				// imposta led
+				// imposta led 
 				case 'c': return 3;
 				// imposta led
 				default:  break;
