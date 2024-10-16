@@ -1,17 +1,17 @@
 #variabili dichiarate
-EXENAME = 05-automata.o
+EXENAME = sfm.o
 CSRCS = automata-1-solution.cpp 
 CPPFLAGS = -Wall -g
 LDFLAGS = -l stdc++
 
 #di solito viene già utilizzato
-CC = gcc
+CC = g++
 
 # Target
 CPP_EXENAME = sfm.o   # programma C++
 
 # sources
-CPP_SOURCES = sfm.cpp automata-1-solution.cpp
+CPP_SOURCES = sfm-cout.cpp automata-1-solution.cpp
 # PROJECT_SOURCE_DIR = 4-circular_array/
 
 # Make both files
@@ -26,5 +26,5 @@ clean:
 	rm -f $(CPP_EXENAME)
 
 # Esegui programma C++
-run_cpp: $(CPP_EXENAME)
+run: $(CPP_EXENAME)
 	./$(CPP_EXENAME)

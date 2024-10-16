@@ -52,7 +52,7 @@ int sfn(int currState, char input)
 void mfn(int currState)
 {
 	// debug
-	cout << "current state is S" <<currState << endl;
+	cout << "current state is S" << currState << endl;
 	switch(currState)
 	{
 		case 0:
@@ -69,7 +69,7 @@ void mfn(int currState)
 			break;
 			
 		case 3:
-			cout << "BLUE LED ON" << endl;
+			cout << "GREEN LED ON" << endl;
 			break;
 			
 		default:

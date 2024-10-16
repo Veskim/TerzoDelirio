@@ -53,11 +53,11 @@ int main()
 				break;
 		}
 		
-		cout << "Next input word is " << c << ", current state is " << currState << endl;
+		cout << "Next input word is " << c << endl; //", current state is " << currState << endl;
 		
-		state : sfn(currState, c);
+		state = sfn(currState, c);
 		
-		cout << "Next state will be " << state << endl;
+		//cout << "Next state will be " << state << endl;
 
 		mfn(state);
 		
