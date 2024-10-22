@@ -26,7 +26,7 @@
 /*
  * Test that if we give a wrong state, then sfm returns '-3', no matter which char we pass to it
  */
-void sfm_wrongstate_returnerrorcode()
+void sfn_wrongstate_returnerrorcode()
 {
     // Arrange
     int s = 4;
@@ -37,13 +37,13 @@ void sfm_wrongstate_returnerrorcode()
     int ret = sfn(s, c);
 
     // Assert
-    myassert(ret == expectedval, "sfm_wrongstate_returnerrorcode");
+    myassert(ret == expectedval, "sfn_wrongstate_returnerrorcode");
 }
 
 /*
  * Test that if we give a correct state, but a wrong input, then sfm returns '-1'
  */
-void sfm_goodstateandwronginput_returnerrorcode()
+void sfn_goodstateandwronginput_returnerrorcode()
 {
     // Arrange
     int s = 0;
@@ -57,12 +57,12 @@ void sfm_goodstateandwronginput_returnerrorcode()
     int ret = sfn(s, c);
 
     // Assert
-    myassert(ret == expectedval, "sfm_goodstateandwronginput_returnerrorcode");
+    myassert(ret == expectedval, "sfn_goodstateandwronginput_returnerrorcode");
 }
 
 int main()
 {
     // Run tests, one after another
-    sfm_wrongstate_returnerrorcode();
-    sfm_goodstateandwronginput_returnerrorcode();
+    sfn_wrongstate_returnerrorcode();
+    sfn_goodstateandwronginput_returnerrorcode();
 }

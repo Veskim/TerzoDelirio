@@ -1,6 +1,6 @@
-EXENAME = unittests
-CFLAGS = -Wall -I ../../inc -I ../
-LDFLAGS = -l stdc++
+EXENAME=unittests
+CFLAGS=-Wall -I ../../inc -I ../
+LDFLAGS=-l stdc++
 CSRCS=../../src/fsm-with-array.c \
       ../../src/hal-linux.c \
       unittests.c
